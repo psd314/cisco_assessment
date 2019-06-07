@@ -8,11 +8,18 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
 def insert(fp):
-	with open(fp, 'r') as json_file:
-		return json.dumps(json_file)
-	
-def create_customers_table():
 	engine = create_engine('sqlite:///../data/customer.db')
+	create_customers_table(engine)
+	create_orders_table(engine)
+
+	with open(fp, 'r') as json_file:
+		records = json.load(json_file)
+	
+	return records['tables'][0]['customers']
+
+
+
+def create_customers_table(engine):
 	meta = MetaData()
 
 	customers = Table('customers', meta, 
@@ -24,8 +31,7 @@ def create_customers_table():
 	)
 	customers.create(engine, checkfirst=True)
 
-def create_orders_table():
-	engine = create_engine('sqlite:///../data/customer.db')
+def create_orders_table(engine):
 	meta = MetaData()
 
 	orders = Table('orders', meta,
