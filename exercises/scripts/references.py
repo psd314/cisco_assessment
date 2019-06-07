@@ -1,5 +1,6 @@
 import click
 import requests
+import yaml
 
 class References():
 	def __init__(self, path):
@@ -13,3 +14,13 @@ class References():
 	def filter_refs(self):
 		self.references = [ref for ref in self.references if 'pull' not in ref['ref']]
 		return self.references
+
+	def format_refs(self):
+		yaml_objs = []
+		for ref in self.references:
+			del ref['node_id']
+			del ref['object']['url']
+			del ref['url']
+			yaml_objs.append(ref)
+
+		return yaml.dump(yaml_objs, default_flow_style=False)

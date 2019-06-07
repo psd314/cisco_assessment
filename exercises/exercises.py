@@ -12,7 +12,9 @@ def listrefs(url):
 	"""Extra help for listrefs"""
 	ref = References(url)
 	ref.get_refs()
-	click.echo(ref.filter_refs())
+	ref.filter_refs()
+	click.echo(ref.format_refs())
+
 @click.group()
 def cli2():
 	pass
