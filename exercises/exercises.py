@@ -1,5 +1,7 @@
 import click
 from scripts.references import References
+import os
+import scripts.insert_records as ir
 
 @click.group()
 def cli1():
@@ -9,25 +11,28 @@ def cli1():
 @cli1.command()
 @click.argument('url')
 def listrefs(url):
-	"""Extra help for listrefs"""
+	"""Queries GitHub's API and returns references for a give user or repo
+		\n\n\targs: path - url segment consisting of github name and repo <github_name>/<repo_name>
+		\n\n\tex. octocat/Hello-World
+	"""
 	ref = References(url)
 	ref.get_refs()
 	ref.filter_refs()
 	click.echo(ref.format_refs())
 
-@click.group()
+@click.group(chain=True)
 def cli2():
 	pass
 
 @cli2.command()
 def dbtool():
 	"""Extra help for db"""
-	pass
-
+	
 @cli2.command()
-def insert():
+@click.option('--file', help='absolute path to file to be read in to db')
+def insert(file):
 	"""Insert records into db"""
-	click.echo('insert into db')
+	click.echo(ir.insert(file))
 
 @cli2.command()
 def orders():

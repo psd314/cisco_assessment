@@ -1,0 +1,119 @@
+{
+  "tables": [
+    {
+      "table": "customers",
+      "records": [
+        {
+          "customer_id": 27,
+          "first_name": "Bruce",
+          "last_name": "Wayne",
+          "zipcode": 25490,
+          "country": "USA"
+        },
+        {
+          "customer_id": 29,
+          "first_name": "Diana",
+          "last_name": "Prince",
+          "zipcode": null,
+          "country": "USA"
+        },
+        {
+          "customer_id": 33,
+          "first_name": "Victor",
+          "last_name": "Stone",
+          "zipcode": 35690,
+          "country": "USA"
+        },
+        {
+          "customer_id": 50,
+          "first_name": "Clark",
+          "last_name": "Kent",
+          "zipcode": 24590,
+          "country": "USA"
+        },
+        {
+          "customer_id": 61,
+          "first_name": "Barry",
+          "last_name": "Allen",
+          "zipcode": 45690,
+          "country": "USA"
+        }
+      ]
+    },
+    {
+      "table": "orders",
+      "records": [
+        {
+          "order_id": 4590,
+          "customer_id": 27,
+          "ordered_on": "2016-10-18"
+        },
+        {
+          "order_id": 4591,
+          "customer_id": 27,
+          "ordered_on": "2016-10-20"
+        },
+        {
+          "order_id": 4592,
+          "customer_id": 27,
+          "ordered_on": "2016-10-19"
+        },
+        {
+          "order_id": 4593,
+          "customer_id": 27,
+          "ordered_on": "2016-10-18"
+        },
+        {
+          "order_id": 4594,
+          "customer_id": 27,
+          "ordered_on": "2016-10-18"
+        },
+        {
+          "order_id": 4595,
+          "customer_id": 27,
+          "ordered_on": "2016-10-18"
+        },
+        {
+          "order_id": 4596,
+          "customer_id": 27,
+          "ordered_on": "2016-10-18"
+        },
+        {
+          "order_id": 4597,
+          "customer_id": 29,
+          "ordered_on": "2016-10-18"
+        },
+        {
+          "order_id": 4598,
+          "customer_id": 29,
+          "ordered_on": "2016-10-20"
+        },
+        {
+          "order_id": 4599,
+          "customer_id": 29,
+          "ordered_on": "2016-10-19"
+        },
+        {
+          "order_id": 4600,
+          "customer_id": 29,
+          "ordered_on": "2016-10-18"
+        },
+        {
+          "order_id": 4500,
+          "customer_id": 29,
+          "ordered_on": "2016-10-18"
+        },
+        {
+          "order_id": 4501,
+          "customer_id": 50,
+          "ordered_on": "2016-10-18"
+        },
+        {
+          "order_id": 4502,
+          "customer_id": 61,
+          "ordered_on": "2016-10-18"
+        }
+      ]
+    }
+  ]
+}
