@@ -36,7 +36,6 @@ def dbtool(action, file_, date):
 	"""
 	# handle dbtool arguments 
 	if action=='insert':
-		click.echo(file_)
 		click.echo(ir.insert(file_))
 	elif action=='orders':
 		# loop through query results for a given date and print out

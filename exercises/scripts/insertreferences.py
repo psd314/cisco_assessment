@@ -41,8 +41,7 @@ def insert(fp):
 	# insert records
 	insert_customers(customers, engine, customer_records)
 	insert_orders(orders, engine, order_records)
-
-	conn.close()
+	return f'\nRecords from {fp} successfully inserted.\n'
 
 def insert_customers(customers, engine, records):
 	conn = engine.connect()
@@ -58,7 +57,6 @@ def insert_customers(customers, engine, records):
 		if not check_id:
 			# insert record if primary key is unique
 			conn.execute(customers.insert(), r)	
-	conn.close()
 
 def insert_orders(orders, engine, records):
 	conn = engine.connect()
@@ -75,9 +73,8 @@ def insert_orders(orders, engine, records):
 			# insert record if primary key is unique
 			r['ordered_on'] = datetime.strptime(r['ordered_on'], '%Y-%m-%d')
 			conn.execute(orders.insert(), r)	
-	conn.close()
 
-def get_orders(date):
+def get_orders(date, engine):
 	conn = engine.connect()
 	# query and aggregate results on/before date
 	query_pre = f'SELECT * FROM customers LEFT JOIN (SELECT ordered_on, customer_id, \
@@ -108,6 +105,5 @@ def get_orders(date):
 			# replace None item_counts with 0
 			string = f'{p.first_name} {p.last_name} ordered {0} after {date}'
 		tables['post_date'].append(string)
-	conn.close()
 	return tables
 
