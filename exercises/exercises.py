@@ -1,4 +1,5 @@
 import click
+from sqlalchemy import create_engine
 from scripts.references import References
 import os
 import scripts.insertreferences as ir
@@ -40,15 +41,18 @@ def dbtool(action, file_, date):
 	elif action=='orders':
 		# loop through query results for a given date and print out
 		# lists for on/before and after
-		orders = ir.get_orders(date)
+		
+		db_path = 'sqlite:///' + os.path.abspath('dbtool.db')
+		engine = create_engine(db_path)
+		orders = ir.get_orders(date, engine)
 		for o in orders['pre_date']:
 			click.echo(o)
 		click.echo()
 		for o in orders['post_date']:
 			click.echo(o)
 	else:
-		click.echo('Invalid or missing argument. Valid arguments: insert | orders. See \'exercises dbtools --help\'\
-option for more information on correct usage.')
+		click.echo('\nInvalid or missing argument. Valid arguments: insert | orders. See \'exercises dbtools --help\'\
+option for more information on correct usage.\n')
 
 # combine groups into one cli object
 cli = click.CommandCollection(sources=[cli1, cli2])

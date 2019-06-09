@@ -3,9 +3,11 @@ import json
 from datetime import datetime
 from sqlalchemy import Column, ForeignKey, Integer, String, Date
 from sqlalchemy import create_engine
-
+import os
+import sys
 # create objects for db manipulation
-engine = create_engine('sqlite:///./data/dbtool.db')
+db_path = 'sqlite:///' + os.path.abspath('dbtool.db')
+engine = create_engine(db_path)
 meta = MetaData()
 
 # table schemas
