@@ -1,7 +1,7 @@
 import click
 from scripts.references import References
 import os
-import scripts.insert_records as ir
+import scripts.insert_copy as ic
 
 @click.group()
 def cli1():
@@ -20,22 +20,35 @@ def listrefs(url):
 	ref.filter_refs()
 	click.echo(ref.format_refs())
 
-@click.group(chain=True)
+@click.group()
 def cli2():
 	pass
 
 @cli2.command()
-def dbtool():
+@click.argument('action', required=False, default=True)
+@click.option('--file', '-f', 'file_')
+@click.option('--date')
+def dbtool(action, file_, date):
 	"""Extra help for db"""
-	
-@cli2.command()
-@click.option('--file', help='absolute path to file to be read in to db')
-def insert(file):
-	"""Insert records into db"""
-	click.echo(ir.insert(file))
+	if action=='insert':
+		click.echo(file_)
+		click.echo(ic.insert(file_))
+	elif action=='orders':
+		click.echo(date)
+	else:
+		click.echo('handle error')
+	click.echo('dbtool called')
 
-@cli2.command()
-def orders():
-	"""Retrieve record based on date"""
-	click.echo('query results')
+	
+#@cli2.command()
+#@click.option('--file', help='absolute path to file to be read in to db')
+#def insert(file):
+#	"""Insert records into db"""
+#	click.echo(ir.insert(file))
+#
+#@cli2.command()
+#def orders():
+#	"""Retrieve record based on date"""
+#	click.echo('query results')
 cli = click.CommandCollection(sources=[cli1, cli2])
+
