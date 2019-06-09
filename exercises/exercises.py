@@ -26,15 +26,20 @@ def cli2():
 
 @cli2.command()
 @click.argument('action', required=False, default=True)
-@click.option('--file', '-f', 'file_')
-@click.option('--date')
+@click.option('--file', '-f', 'file_', help='absolute path to file to be read in to db')
+@click.option('--date', help='Date for query, format: YYYY-MM-DD')
 def dbtool(action, file_, date):
 	"""Extra help for db"""
 	if action=='insert':
 		click.echo(file_)
 		click.echo(ic.insert(file_))
 	elif action=='orders':
-		click.echo(date)
+		orders = ic.get_orders(date)
+		for o in orders['pre_date']:
+			click.echo(o)
+		click.echo()
+		for o in orders['post_date']:
+			click.echo(o)
 	else:
 		click.echo('handle error')
 	click.echo('dbtool called')
