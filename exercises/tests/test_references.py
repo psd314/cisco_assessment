@@ -48,7 +48,7 @@ class TestReferences:
 				}
 			}
 		]
-
+		# format_refs should return a string
 		yaml_string = ref.format_refs()
 
 		assert isinstance(yaml_string, str) == True
