@@ -1,11 +1,11 @@
 import click
 from scripts.references import References
 import os
-import scripts.insert_copy as ic
+import scripts.insertreferences as ir
 
 @click.group()
 def cli1():
-	"""Welcome to exercises"""
+	"""Python Exercises"""
 	pass
 
 @cli1.command()
@@ -13,7 +13,7 @@ def cli1():
 def listrefs(url):
 	"""Queries GitHub's API and returns references for a give user or repo
 		\n\n\targs: path - url segment consisting of github name and repo <github_name>/<repo_name>
-		\n\n\tex. octocat/Hello-World
+		\n\n\tex. exercises listrefs octocat/Hello-World
 	"""
 	ref = References(url)
 	ref.get_refs()
@@ -26,34 +26,31 @@ def cli2():
 
 @cli2.command()
 @click.argument('action', required=False, default=True)
-@click.option('--file', '-f', 'file_', help='absolute path to file to be read in to db')
-@click.option('--date', help='Date for query, format: YYYY-MM-DD')
+@click.option('--file', '-f', 'file_', help='Absolute path to file to be read in to db. Use with \'insert\' argument. ex. /home/Documents/data.json')
+@click.option('--date', help='Date for query, format: YYYY-MM-DD. Use with \'order\' argument. ex. 2016-09-18')
 def dbtool(action, file_, date):
-	"""Extra help for db"""
+	# doc string for dbtool --help
+	"""Database operations
+		\n\n\targs: insert - use --file option with absolute path to load json file into database. ex. exercises dbtools insert --file=/home/Documents/data.json
+		\n\n\torders - use --date option with YYYY-MM-DD format to return order information. ex. exercises dbtools orders --date=2016-10-18
+	"""
+	# handle dbtool arguments 
 	if action=='insert':
 		click.echo(file_)
-		click.echo(ic.insert(file_))
+		click.echo(ir.insert(file_))
 	elif action=='orders':
-		orders = ic.get_orders(date)
+		# loop through query results for a given date and print out
+		# lists for on/before and after
+		orders = ir.get_orders(date)
 		for o in orders['pre_date']:
 			click.echo(o)
 		click.echo()
 		for o in orders['post_date']:
 			click.echo(o)
 	else:
-		click.echo('handle error')
-	click.echo('dbtool called')
+		click.echo('Invalid or missing argument. Valid arguments: insert | orders. See \'exercises dbtools --help\'\
+option for more information on correct usage.')
 
-	
-#@cli2.command()
-#@click.option('--file', help='absolute path to file to be read in to db')
-#def insert(file):
-#	"""Insert records into db"""
-#	click.echo(ir.insert(file))
-#
-#@cli2.command()
-#def orders():
-#	"""Retrieve record based on date"""
-#	click.echo('query results')
+# combine groups into one cli object
 cli = click.CommandCollection(sources=[cli1, cli2])
 
