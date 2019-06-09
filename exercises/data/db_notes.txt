@@ -1,4 +1,0 @@
-Steps to instantiate database:
-1. Create script to connect to sqlite database (create_db.py)
-2. Run the following command in the /data directory
-	$ python create_db.py
