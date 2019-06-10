@@ -25,4 +25,4 @@ a connection to a sqlite database in the data folder. Tables are created the fir
 is run after installation per instructions. Data files are not included in tar package.
 
 
-* $ - prompt symbol
+*$ - prompt symbol
