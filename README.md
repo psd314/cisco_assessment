@@ -2,8 +2,9 @@
 
 ### Install
 1. $ virtualenv <environment_name> (Optional step but recommended) *
-2. $ pip install cisco_assessment/exercises/dist/Exercises-0.1.tar.gz
-3. $ exercises --help
+2. $ source <environment_name>/bin/activate (activate virtual environment)
+3. $ pip install cisco_assessment/exercises/dist/Exercises-0.1.tar.gz
+4. $ exercises --help
 
 ### About
 exercises is a command line tool for interfacing with the GitHub 
