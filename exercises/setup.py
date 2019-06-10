@@ -8,10 +8,18 @@ setup(
 	packages=find_packages(),
 	include_package_data=True,	
 	install_requires=[
-		'Click',
+		'certifi==2019.3.9',
+		'chardet==3.0.4',
+		'Click==7.0',
+		'Exercises==0.1',
+		'idna==2.8',
+		'PyYAML==5.1.1',
+		'requests==2.22.0',
+		'SQLAlchemy==1.3.4',
+		'urllib3==1.25.3'
 	],
 	entry_points='''
 		[console_scripts]
-		exercises=exercises:cli
+		exercises=main_script.exercises:cli
 	'''
 )

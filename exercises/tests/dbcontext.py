@@ -2,15 +2,18 @@ from sqlalchemy import *
 import json
 import sqlite3
 from datetime import datetime
+import os
 from sqlalchemy import Column, ForeignKey, Integer, String, Date
 from sqlalchemy import create_engine
+
+db_path = 'sqlite:///' + os.path.abspath('dbtool.db')
 
 class DBContext:
 	def __init__(self, db_file):
 		# instantiate db if it doesn't exist
 		sqlite3.connect(db_file)
 
-		self.engine = create_engine(f'sqlite:///./data/{db_file}')
+		self.engine = create_engine(db_path)
 		self.meta = MetaData()
 		self.customers = Table('customers', self.meta, 
 			Column('customer_id', Integer, primary_key=True),
