@@ -1,10 +1,11 @@
 # cisco_assessment
-
+After cloning the repo
 ### Install
 1. $ virtualenv <environment_name> (Optional step but recommended) *
 2. $ source <environment_name>/bin/activate (activate virtual environment)
-3. $ pip install cisco_assessment/exercises/dist/Exercises-0.1.tar.gz
-4. $ exercises --help
+3. $ python setup sdist (from /exercises directory)
+4. $ pip install cisco_assessment/exercises/dist/Exercises-0.1.tar.gz
+5. $ exercises --help
 
 ### About
 exercises is a command line tool for interfacing with the GitHub 
