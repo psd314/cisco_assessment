@@ -13,7 +13,7 @@ setup(
 		'Click==7.0',
 		'Exercises==0.1',
 		'idna==2.8',
-		'PyYAML==5.1.1',
+		'PyYAML==5.4',
 		'requests==2.22.0',
 		'SQLAlchemy==1.3.4',
 		'urllib3==1.25.3'
