@@ -16,7 +16,7 @@ setup(
 		'PyYAML==5.1.1',
 		'requests==2.22.0',
 		'SQLAlchemy==1.3.4',
-		'urllib3==1.25.3'
+		'urllib3==1.25.8'
 	],
 	entry_points='''
 		[console_scripts]
